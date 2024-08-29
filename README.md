@@ -38,3 +38,7 @@ networks:
 ```
 - configure volumes override to correspond your environment
 - configure ports / mapped ports if needed
+## Configure application.yml configuration file for container-and-signature-services and digital-stamping-service
+- As you could see from docker-compose, we are overriding configuration path of both services in order to have external configuration available outside of container
+- container-and-signature application.yml by default not requires extra configuration and should be correctly working by default
+- 
