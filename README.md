@@ -39,6 +39,6 @@ networks:
 - configure volumes override to correspond your environment
 - configure ports / mapped ports if needed
 ## Configure application.yml configuration file for container-and-signature-services and digital-stamping-service
-- As you could see from docker-compose, we are overriding configuration path of both services in order to have external configuration available outside of container
-- container-and-signature application.yml by default not requires extra configuration and should be correctly working by default
-- 
+- As you could see from docker-compose, we are overriding configuration path of both services in order to have external configuration available outside of container. This approach allows us to change configuration, restart container and overview changes.
+- container-and-signature application.yml by default not requires extra configuration and should be correctly working by default.
+- digital-stamping-service configuration is unique and is based on a technology used (HSM / cryptostick USB device). In order to execute it, please contact TrustLynx colleagues.
