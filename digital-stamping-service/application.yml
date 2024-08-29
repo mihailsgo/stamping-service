@@ -1,0 +1,35 @@
+﻿server:
+  port: 8084
+spring:
+  zipkin:
+    enabled: false
+
+stamping:
+  tokenAccessEndpoint: http://digital-stamping-service:8084/api  
+  companies:
+    -
+      name: "TrustLynx"
+      providers:
+        -
+          loginForPublicKey: false
+          relogin: true
+          name: "TL1"
+          tokenLabel: "PIN2 (TrustLynx LV"
+          tokenSerial: "XXXXXXX"
+          #publicCertSerial: "0210096fe0346bf7818466446aaf8cee8706"
+          #publicCertLabel: "QSCD Certificate: TrustLynx LV"
+          #privateKeyLabel: "Private Key: TrustLynx LV"
+          #privateKeyID: "e38828613b138c1b51d84d834535a0af8969feb5"
+          password: "000000"
+          library: "C:\\Program Files\\IDEMIA\\AWP\\DLLs\\OcsCryptolib_P11.dll"
+          #cert: ""
+logging:
+  config: /confs/logback.xml
+  level:
+    root: INFO
+    ee:
+      digitalmind: INFO
+
+springdoc:
+  swagger-ui:
+    use-root-path: true
