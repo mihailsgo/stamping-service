@@ -36,3 +36,5 @@ services:
 networks:
   default:
 ```
+- configure volumes override to correspond your environment
+- configure ports / mapped ports if needed
