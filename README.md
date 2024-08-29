@@ -1,4 +1,9 @@
 # TrustLynx e-seal stamping configuration
+## Product information and documentation resources
+
+- https://trustlynx.com/
+- https://developer.trustlynx.com/
+
 ## Prerequisites
 - docker
 - docker-compose
