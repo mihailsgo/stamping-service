@@ -113,12 +113,12 @@ mobile-id:
     EE:
       relyingPartyName: Digital Signing
       hostUrl: https://mid.sk.ee/mid-api
-      relyingPartyUUID: xxx
+      relyingPartyUUID: e18e72f7-4e7d-4e13-a309-82695135de2c
       displayText: "TEST Allkirjasta dokument?"
     LT:
       relyingPartyName: Digital Signing
       hostUrl: https://mid.sk.ee/mid-api
-      relyingPartyUUID: xxx
+      relyingPartyUUID: e18e72f7-4e7d-4e13-a309-82695135de2c
       displayText: "Pasirašai dokumentą?"
 dmss-document-generation-service:
   # Document generation service URL
@@ -129,10 +129,8 @@ dmss-document-generation-service:
     defaultExtension: .pdf
 # DMSS USB token access service URL
 digital-stamping-service:
-  #baseUrl: http://host.docker.internal:8084/api
-  tokensDiscoverySchedule: "5 * * * * ?"
-  tokensDiscoveryEnabled: true
-  stampingServers: http://digital-stamping-service:8084
+  baseUrl: http://digital-stamping-service:8084/api
+# baseUrl: http://riga-app.digitalmind.local:8084/api
 hystrix:
   command:
     default:
@@ -195,8 +193,8 @@ idCard:
 # LVRTC (ePM) settings
 lvrtc:
   baseUri: https://eidas.eparaksts.lv/
-  clientId: 111
-  clientSecret: xxx
+  clientId: 14709995583324921679
+  clientSecret: MvpYYqtmW85jsq5a54xX
   authRedirectUri: https://esign.trustlynx.com/extportal/signing/lvrtc/signature
   signRedirectUri: https://esign.trustlynx.com/extportal/signing/lvrtc/signature
   defaultLocale: lv
@@ -211,7 +209,7 @@ lvrtc:
   keystorePath: classpath:digitalmind.jks
   # keystore path including additional CA certs accepted by lvrtc signing libarary
   certtruststorePath: classpath:test.cert.truststore.jks
-# Logging settings to confgiure logback logger
+
 logging:
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId}/%X{spanId}] %-5p [%t] %logger{36} - %msg%n'
@@ -238,14 +236,14 @@ pdfConverter:
 logRequests: false
 asseco:
   apiUri: https://model.simplysign.webnotarius.pl
-  clientId: xxx
-  clientSecret: xxx
+  clientId: R3hDGFn5MnXfCtH8ULJV
+  clientSecret: ynrqVXboxTcH37VPZbkY
   redirectUri: https://esign.trustlynx.com/extportal/signing/simplysign
 infobip:
 #  baseUrl: https://yrj6yg.api.infobip.com
 #  apiKey: 0cb9eaf0f3271a8852098c1df29f3628-511a4150-71c1-4f00-8d28-5473f44469fd
   baseUrl: https://yrj6yg.api.infobip.com
-  apiKey: xxx
+  apiKey: 0cb9eaf0f3271a8852098c1df29f3628-511a4150-71c1-4f00-8d28-5473f44469fd
 smsSigning:
   otpLength: 6
   expireInMinutes: 1
@@ -254,12 +252,26 @@ smsSigning:
   sender: Digitalmind
 zealId:
   apiUri: https://core-hermes.zealid.com/api/csc/v1/v2.0
-  clientId: xxx
-  clientSecret: xxx
-  accountId: xxx
+  clientId: D899DDB1-0A53-4482-8C6E-EEE72F07B099
+  clientSecret: mcdSb7Oc4NJWZKVlYAfTVMpNtKcwVAjRjVst_RjrUxE
+  accountId: zUY882NDqVJoyZpmvY3FMZ-JR07v3WcTGdoGWQLxBjI
   redirectUri: https://esign.trustlynx.com/extportal/signing/zealid
 pdf-fill-form:
-  application: []
+  application:
+    [
+      {
+        name: application,
+        templateResource: ./tmp/template.pdf
+      },
+      {
+        name: applicationLV,
+        templateResource: ./tmp/template_LV.pdf
+      },
+      {
+        name: applicationEN,
+        templateResource: ./tmp/template_EN.pdf
+      }      
+    ]
 timestamp:
   timestampProviders:
     -
@@ -270,5 +282,6 @@ timestamp:
           port: 443
           scheme: Basic
           realm: KeyOneSystem
-          username: 111
-          password: XXX
+          username: 22857701351292163068
+          password: OdoZLvUdtNuM0Ju19J1c
+

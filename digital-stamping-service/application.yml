@@ -1,11 +1,10 @@
-﻿server:
+server:
   port: 8084
 spring:
   zipkin:
     enabled: false
 
 stamping:
-  tokenAccessEndpoint: http://digital-stamping-service:8084/api  
   companies:
     -
       name: "TrustLynx"
@@ -14,21 +13,21 @@ stamping:
           loginForPublicKey: false
           relogin: true
           name: "TL1"
-          tokenLabel: "PIN2 (TrustLynx LV"
-          tokenSerial: "XXXXXXX"
-          #publicCertSerial: "0210096fe0346bf7818466446aaf8cee8706"
-          #publicCertLabel: "QSCD Certificate: TrustLynx LV"
-          #privateKeyLabel: "Private Key: TrustLynx LV"
-          #privateKeyID: "e38828613b138c1b51d84d834535a0af8969feb5"
-          password: "000000"
-          library: "C:\\Program Files\\IDEMIA\\AWP\\DLLs\\OcsCryptolib_P11.dll"
+          tokenLabel: "eParaksts karte"
+          tokenSerial: "00000000486DE46F"
+          publicCertSerial: "096fe0346bf7818466446aaf8cee8706"
+          publicCertLabel: "QSCD Certificate: TrustLynx LV"
+          privateKeyLabel: "QSCD Private Key: TrustLynx LV"
+          privateKeyID: "641b573c5c89e9d6143a430631650c124466212f"
+          password: "749964"
+          library: "/usr/local/AWP/lib/libOcsCryptoki.so"
           #cert: ""
 logging:
   config: /confs/logback.xml
   level:
-    root: INFO
+    root: DEBUG
     ee:
-      digitalmind: INFO
+      digitalmind: DEBUG
 
 springdoc:
   swagger-ui:
