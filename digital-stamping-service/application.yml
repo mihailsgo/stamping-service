@@ -13,15 +13,14 @@ stamping:
           loginForPublicKey: false
           relogin: true
           name: "TL1"
-          tokenLabel: "eParaksts karte"
-          tokenSerial: "00000000486DE46F"
-          publicCertSerial: "096fe0346bf7818466446aaf8cee8706"
-          publicCertLabel: "QSCD Certificate: TrustLynx LV"
-          privateKeyLabel: "QSCD Private Key: TrustLynx LV"
-          privateKeyID: "641b573c5c89e9d6143a430631650c124466212f"
-          password: "749964"
+          tokenLabel: ""
+          tokenSerial: ""
+          publicCertSerial: ""
+          publicCertLabel: ""
+          privateKeyLabel: ""
+          privateKeyID: ""
+          password: ""
           library: "/usr/local/AWP/lib/libOcsCryptoki.so"
-          #cert: ""
 logging:
   config: /confs/logback.xml
   level:
@@ -32,3 +31,5 @@ logging:
 springdoc:
   swagger-ui:
     use-root-path: true
+    
+    
