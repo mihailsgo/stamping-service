@@ -27,11 +27,11 @@ management:
       enabled: true
 
 signatureServices:
+  documentSigningProfiles: file:/confs/documentsigningprofiles.json
   # Time to wait signing process can take. Example: How long pin2 insert for id card can take
   timeout: 40000
   cors:
     disabled: true
-  documentSigningProfiles: file:/confs/documentsigningprofiles.json  
 containerController:
   # Illegal charcters will be replaced in attachments file name if container created
   illegalChars: "[\\\\/:*?\"<>|\\^\\&]"
@@ -50,7 +50,7 @@ containerController:
       objectNameJsonKey: "objectName"
 # DMSS Process and Audit Service url
 dmss-process-and-auditing-service:
-  enabled: true
+  enabled: false
   baseUrl: "http://dmss-process-and-auditing-service:8765"
 # DMSS Archive Services configuation url
 archive-services:
@@ -113,12 +113,12 @@ mobile-id:
     EE:
       relyingPartyName: Digital Signing
       hostUrl: https://mid.sk.ee/mid-api
-      relyingPartyUUID: e18e72f7-4e7d-4e13-a309-82695135de2c
+      relyingPartyUUID: rpuid
       displayText: "TEST Allkirjasta dokument?"
     LT:
       relyingPartyName: Digital Signing
       hostUrl: https://mid.sk.ee/mid-api
-      relyingPartyUUID: e18e72f7-4e7d-4e13-a309-82695135de2c
+      relyingPartyUUID: rpuid
       displayText: "Pasirašai dokumentą?"
 dmss-document-generation-service:
   # Document generation service URL
@@ -129,6 +129,9 @@ dmss-document-generation-service:
     defaultExtension: .pdf
 # DMSS USB token access service URL
 digital-stamping-service:
+  tokensDiscoverySchedule: "5 * * * * ?"
+  tokensDiscoveryEnabled: true
+  stampingServers: http://digital-stamping-service:8084/api
   baseUrl: http://digital-stamping-service:8084/api
 # baseUrl: http://riga-app.digitalmind.local:8084/api
 hystrix:
@@ -151,20 +154,24 @@ digidoc4j:
     preferAiaOcsp: true
     issuers:
 pdf:
-  #defaultSignatureLevel: PAdES_BASELINE_B
-  cakeystorepath: /confs/dmssrootca.p12
+  defaultSignatureLevel: PAdES_BASELINE_LT
+  cakeystorepath: C:/Users/Keit.Kivisild.DIGITALMIND/IdeaProjects/dmss-container-and-signature-services/src/main/resources/dmssrootca.p12
   cakeystorepassword: livelink
   caCertAlias: digital mind root ca
   #tsaUrl: http://tsa.sk.ee
   signature:
     defaults:
       numberOfSignaturesInRow: 3
-      xAxis: 100
-      yAxis: 700
-      zoomPrecent: 70
+      dateFormat: "dd.MM.yyyy HH:mm:ss z"
+      xAxis: 10
+      yAxis: 10
+      zoomPrecent: 50
       signatureText: "Digitally signed by: {g} {sn} \nAt date: {date}"
-      sigMod2XIndent: -300
-      sigMod2YIndent: -100
+      sigMod2XIndent: 200
+      sigMod2YIndent: 300
+      font: classpath:OpenSans-Bold.ttf
+      signerTextVerticalPosition: BOTTOM
+      signatureImageScaling: ZOOM_AND_CENTER
     textImage:
       by: "Signed By"
       in: "In"
@@ -179,7 +186,7 @@ pdf:
         g: 0
         b: 0
       font: "classpath:Pacifico-Regular.ttf"
-      fontsize: 30
+      fontsize: 50
 hazelcast:
   expireInminutes: 3
   members: localhost:5777
@@ -193,8 +200,8 @@ idCard:
 # LVRTC (ePM) settings
 lvrtc:
   baseUri: https://eidas.eparaksts.lv/
-  clientId: 14709995583324921679
-  clientSecret: MvpYYqtmW85jsq5a54xX
+  clientId: clientid
+  clientSecret: secret
   authRedirectUri: https://esign.trustlynx.com/extportal/signing/lvrtc/signature
   signRedirectUri: https://esign.trustlynx.com/extportal/signing/lvrtc/signature
   defaultLocale: lv
@@ -236,14 +243,14 @@ pdfConverter:
 logRequests: false
 asseco:
   apiUri: https://model.simplysign.webnotarius.pl
-  clientId: R3hDGFn5MnXfCtH8ULJV
-  clientSecret: ynrqVXboxTcH37VPZbkY
+  clientId: clientid
+  clientSecret: secret
   redirectUri: https://esign.trustlynx.com/extportal/signing/simplysign
 infobip:
 #  baseUrl: https://yrj6yg.api.infobip.com
 #  apiKey: 0cb9eaf0f3271a8852098c1df29f3628-511a4150-71c1-4f00-8d28-5473f44469fd
   baseUrl: https://yrj6yg.api.infobip.com
-  apiKey: 0cb9eaf0f3271a8852098c1df29f3628-511a4150-71c1-4f00-8d28-5473f44469fd
+  apiKey: apikey-511a4150-71c1-4f00-8d28-5473f44469fd
 smsSigning:
   otpLength: 6
   expireInMinutes: 1
@@ -252,9 +259,9 @@ smsSigning:
   sender: Digitalmind
 zealId:
   apiUri: https://core-hermes.zealid.com/api/csc/v1/v2.0
-  clientId: D899DDB1-0A53-4482-8C6E-EEE72F07B099
-  clientSecret: mcdSb7Oc4NJWZKVlYAfTVMpNtKcwVAjRjVst_RjrUxE
-  accountId: zUY882NDqVJoyZpmvY3FMZ-JR07v3WcTGdoGWQLxBjI
+  clientId: clientid
+  clientSecret: secret
+  accountId: accountid
   redirectUri: https://esign.trustlynx.com/extportal/signing/zealid
 pdf-fill-form:
   application:
@@ -270,7 +277,7 @@ pdf-fill-form:
       {
         name: applicationEN,
         templateResource: ./tmp/template_EN.pdf
-      }      
+      }
     ]
 timestamp:
   timestampProviders:
