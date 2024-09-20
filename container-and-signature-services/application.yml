@@ -111,12 +111,12 @@ mobile-id:
   delay: 3000
   countries:
     EE:
-      relyingPartyName: Digital Signing
+      relyingPartyName: Partyname
       hostUrl: https://mid.sk.ee/mid-api
       relyingPartyUUID: rpuid
       displayText: "TEST Allkirjasta dokument?"
     LT:
-      relyingPartyName: Digital Signing
+      relyingPartyName: Partyname
       hostUrl: https://mid.sk.ee/mid-api
       relyingPartyUUID: rpuid
       displayText: "Pasirašai dokumentą?"
@@ -156,7 +156,7 @@ digidoc4j:
 pdf:
   defaultSignatureLevel: PAdES_BASELINE_LT
   cakeystorepath: C:/Users/Keit.Kivisild.DIGITALMIND/IdeaProjects/dmss-container-and-signature-services/src/main/resources/dmssrootca.p12
-  cakeystorepassword: livelink
+  cakeystorepassword: password
   caCertAlias: digital mind root ca
   #tsaUrl: http://tsa.sk.ee
   signature:
@@ -249,8 +249,8 @@ asseco:
 infobip:
 #  baseUrl: https://yrj6yg.api.infobip.com
 #  apiKey: 0cb9eaf0f3271a8852098c1df29f3628-511a4150-71c1-4f00-8d28-5473f44469fd
-  baseUrl: https://yrj6yg.api.infobip.com
-  apiKey: apikey-511a4150-71c1-4f00-8d28-5473f44469fd
+  baseUrl: https://baseurl
+  apiKey: apikey
 smsSigning:
   otpLength: 6
   expireInMinutes: 1
@@ -282,6 +282,8 @@ pdf-fill-form:
 timestamp:
   timestampProviders:
     -
+      tspSource: http://tsa.demo.sk.ee/tsa
+    -
       tspSource: https://tsa-com.eparaksts.lv/
       authentications:
         - protocol: https
@@ -289,6 +291,6 @@ timestamp:
           port: 443
           scheme: Basic
           realm: KeyOneSystem
-          username: 22857701351292163068
-          password: OdoZLvUdtNuM0Ju19J1c
+          username: username
+          password: password
 
